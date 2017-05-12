@@ -1,6 +1,6 @@
 # dSprites - Disentanglement testing Sprites dataset
 
-This repository contains our dSprites dataset, used to assess the
+This repository contains the dSprites dataset, used to assess the
 disentanglement properties of unsupervised learning methods.
 
 If you use this dataset in your work, please cite it as follows:
@@ -9,7 +9,7 @@ If you use this dataset in your work, please cite it as follows:
 
 ```
 @misc{dsprites17,
-author = {Loic Matthey and Irina Higgins and Alexander Lerchner and Demis Hassabis},
+author = {Loic Matthey and Irina Higgins and Demis Hassabis and Alexander Lerchner},
 title = {dSprites: Disentanglement testing Sprites dataset},
 howpublished= {https://github.com/deepmind/dsprites-dataset/},
 year = "2017",
@@ -20,15 +20,16 @@ year = "2017",
 
 ![dsprite_gif](dsprites.gif)
 
-We procedurally generated 2D shapes, depending on 6 disentangled latent factors.
-There are 6 latents factors, controlling the *color*, *shape*, *scale*,
+dSprites is a dataset of 2D shapes procedurally generated from 6 ground truth
+independent latent factors. These factors are *color*, *shape*, *scale*,
 *rotation*, *x* and *y* positions of a sprite.
 
 All possible combinations of these latents are present exactly once,
 generating N = 737280 total images.
 
-### Latents values
+### Latent factor values
 
+*   Color: white
 *   Shape: square, ellipse, heart
 *   Scale: 6 values linearly spaced in [0.5, 1]
 *   Orientation: 40 values in [0, 2 pi]
@@ -36,12 +37,12 @@ generating N = 737280 total images.
 *   Position Y: 32 values in [0, 1]
 
 We varied one latent at a time (starting from Position Y, then Position X, etc),
-and sequentially stored the images in fixed order. Hence the order along the
-first dimension is fixed and allows you to map back to the value of the latents
-corresponding to that image.
+and sequentially stored the images in fixed order.
+Hence the order along the first dimension is fixed and allows you to map back to
+the value of the latents corresponding to that image.
 
-We chose the latents values deliberately to have the smallest steps changes
-while still ensuring that all pixel outputs were different. No noise was added.
+We chose the latents values deliberately to have the smallest step changes
+while ensuring that all pixel outputs were different. No noise was added.
 
 The data is a NPZ NumPy archive with the following fields:
 
@@ -57,12 +58,12 @@ packed as Groups and Datasets.
 
 ## Disentanglement metric
 
-This dataset was created to assess the disentanglement properties of
-unsupervised models. In other words, models should recover the ground truth
-latents presented above.
+This dataset was created as a unit test of disentanglement properties of
+unsupervised models. It can be used to determine how well models recover the
+ground truth latents presented above.
 
-You can see an example usage of this dataset, along with our proposed
-disentanglement metric to assess the disentanglement quality of a model in:
+You find our proposed disentanglement metric assessing the disentanglement
+quality of a model (along with an example usage of this dataset) in:
 
 [Higgins, Irina, Loic Matthey, Arka Pal, Christopher Burgess, Xavier Glorot,
 Matthew Botvinick, Shakir Mohamed, and Alexander Lerchner. "beta-VAE: Learning
